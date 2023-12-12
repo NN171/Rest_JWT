@@ -11,29 +11,29 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(path = "api/v1/student")
+@RequestMapping(path = "/api/v1/student")
 public class StudentController {
 
     private final StudentService studentService;
     private final AuthenticationService authenticationService;
 
-    @GetMapping("studentList")
+    @GetMapping("/studentList")
     public List<Student> getStudents() {
         return studentService.getStudents();
     }
 
 
-    @PostMapping("register")
+    @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
         return ResponseEntity.ok(authenticationService.register(request));
     }
 
-    @PostMapping("authenticate")
+    @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 
-    @DeleteMapping ("studentDelete/{studentId}")
+    @DeleteMapping ("/studentDelete/{studentId}")
     public void deleteStudent(@PathVariable String studentId){
         studentService.deleteStudent(studentId);
     }
@@ -43,7 +43,7 @@ public class StudentController {
         return studentService.findByStudentId(studentId);
     }
 
-    @PutMapping("studentUpdate")
+    @PutMapping("/studentUpdate")
     public Student updateStudent(@RequestBody Student student){
         return studentService.updateStudent(student);
     }
