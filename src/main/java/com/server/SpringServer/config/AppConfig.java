@@ -18,7 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class AppConfig {
 
     private final StudentRepository repository;
-
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> repository.findByEmail(username)
