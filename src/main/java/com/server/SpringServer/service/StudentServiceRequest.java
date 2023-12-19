@@ -21,13 +21,7 @@ public class StudentServiceRequest implements StudentService{
         return studentRepository.findAll();
     }
 
-    public Student setStudents(Student student) {
-        return studentRepository.save(student);
-    }
-
-
-    @Transactional
-    public void deleteStudent(String studentId) {
+    public void deleteStudent(int studentId) {
         studentRepository.deleteByStudentId(studentId);
     }
 
@@ -35,7 +29,7 @@ public class StudentServiceRequest implements StudentService{
         return studentRepository.save(student);
     }
 
-    public Student findByStudentId(String studentId) {
+    public Student findByStudentId(int studentId) {
         return studentRepository.findStudentByStudentId(studentId);
     }
 

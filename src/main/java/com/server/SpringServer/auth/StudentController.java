@@ -34,12 +34,12 @@ public class StudentController {
     }
 
     @DeleteMapping ("/studentDelete/{studentId}")
-    public void deleteStudent(@PathVariable String studentId){
+    public void deleteStudent(@PathVariable int studentId){
         studentService.deleteStudent(studentId);
     }
 
     @GetMapping("/{studentId}")
-    public Student findByStudentId(@PathVariable String studentId){
+    public Student findByStudentId(@PathVariable int studentId){
         return studentService.findByStudentId(studentId);
     }
 

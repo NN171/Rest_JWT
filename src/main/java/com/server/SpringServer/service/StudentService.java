@@ -11,10 +11,9 @@ import java.util.Optional;
 @Service
 public interface StudentService {
     List<Student> getStudents();
-    Student setStudents(Student student);
-    void deleteStudent(String studentId);
+    void deleteStudent(int studentId);
     Student updateStudent(Student student);
-    Student findByStudentId(String studentId);
+    Student findByStudentId(int studentId);
 
     Optional<AuthenticationResponse> register(RegisterRequest request);
 }

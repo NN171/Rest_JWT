@@ -23,7 +23,7 @@ public class Student implements UserDetails {
     @GeneratedValue
     private Long id;
     @Column(unique = true)
-    private String studentId;
+    private int studentId;
     private String firstname;
     private String lastname;
     private String email;
@@ -38,7 +38,7 @@ public class Student implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return String.valueOf(studentId);
     }
 
     @Override
