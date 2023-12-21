@@ -4,6 +4,7 @@ import com.server.SpringServer.data.Student;
 import com.server.SpringServer.service.AuthenticationService;
 import com.server.SpringServer.service.StudentService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,9 +23,11 @@ public class StudentController {
         return studentService.getStudents();
     }
 
-
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
+        if (studentService.existsByStudentId(request.getStudentId())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new AuthenticationResponse());
+        }
         return ResponseEntity.ok(authenticationService.register(request));
     }
 

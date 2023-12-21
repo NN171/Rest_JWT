@@ -23,8 +23,6 @@ public class AuthenticationService {
     private final AuthenticationManager manager;
     public AuthenticationResponse register(RegisterRequest request) {
         var user = Student.builder()
-                .firstname(request.getFirstname())
-                .lastname(request.getLastname())
                 .studentId(request.getStudentId())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
@@ -38,7 +36,7 @@ public class AuthenticationService {
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         manager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.getStudentId(),
+                        String.valueOf(request.getStudentId()),
                         request.getPassword()
                 )
         );

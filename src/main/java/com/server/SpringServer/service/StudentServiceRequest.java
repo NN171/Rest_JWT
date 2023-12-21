@@ -1,15 +1,11 @@
 package com.server.SpringServer.service;
 
-import com.server.SpringServer.auth.AuthenticationResponse;
-import com.server.SpringServer.auth.RegisterRequest;
 import com.server.SpringServer.data.Student;
 import com.server.SpringServer.repository.StudentRepository;
-import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -34,7 +30,7 @@ public class StudentServiceRequest implements StudentService{
     }
 
     @Override
-    public Optional<AuthenticationResponse> register(RegisterRequest request) {
-        return Optional.empty();
+    public boolean existsByStudentId(int studentId) {
+        return studentRepository.existsByStudentId(studentId);
     }
 }

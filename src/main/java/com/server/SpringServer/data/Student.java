@@ -24,8 +24,6 @@ public class Student implements UserDetails {
     private Long id;
     @Column(unique = true)
     private int studentId;
-    private String firstname;
-    private String lastname;
     private String email;
     private String password;
 
