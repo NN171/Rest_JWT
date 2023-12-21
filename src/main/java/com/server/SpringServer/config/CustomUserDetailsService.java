@@ -16,22 +16,17 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {   //Переопределение метода для использования юзернейма типа int
-        try {
-            int studentId = Integer.parseInt(username);
-            Student student = studentService.findByStudentId(studentId);
+        int studentId = Integer.parseInt(username);
+        Student student = studentService.findByStudentId(studentId);
 
-            if (student == null) {
-                throw new UsernameNotFoundException("Пользователь с ID " + username + " не найден");
-            }
+        if (student == null) {
+            throw new UsernameNotFoundException("Пользователь с ID " + username + " не найден");
+        }
 
-            return new User(
-                    String.valueOf(student.getStudentId()),
-                    student.getPassword(),
-                    new ArrayList<>()
-            );
-        }
-        catch (NumberFormatException e){
-            throw new UsernameNotFoundException("Неверный формат");
-        }
+        return new User(
+                String.valueOf(student.getStudentId()),
+                student.getPassword(),
+                new ArrayList<>()
+        );
     }
 }
