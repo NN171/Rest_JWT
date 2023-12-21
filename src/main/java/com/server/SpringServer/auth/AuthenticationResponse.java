@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+
+//Класс отправляет в мобильное приложение токен
 public class AuthenticationResponse {
 
     private String token;

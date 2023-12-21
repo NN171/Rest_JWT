@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AuthenticationService {
+public class AuthenticationService {  //Авторизация и регистрация пользователя, установка значений
 
     private final StudentRepository repository;
     private final PasswordEncoder passwordEncoder;

@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class StudentServiceRequest implements StudentService{
+public class StudentServiceRequest implements StudentService{  //Класс представляет реализацию методов интерфейса
 
     private final StudentRepository studentRepository;
 

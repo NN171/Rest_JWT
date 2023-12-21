@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Timetable {
+public class Timetable {  //Класс, для получения вложенных параметров расписания (не реализовано)
     @Id
     private int id;
     private String groupName;

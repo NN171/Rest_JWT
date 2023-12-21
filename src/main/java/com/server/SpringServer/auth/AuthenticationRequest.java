@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+
+//Класс получает запрос из мобильного приложения во время авторизации
 public class AuthenticationRequest {
     private int studentId;
     private String password;

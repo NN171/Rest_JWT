@@ -15,25 +15,25 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
-public class JwtService {
+public class JwtService {  //Класс для работы с jwt
 
     private static final String SECRET_KEY = "26fe1746b40acf3f263de2736060b6dceeafb8e0b140de23d9f59dbf11764e41";
-    public int extractUsername(String token) {
+    public int extractUsername(String token) {  //Извлекает id студента из токена
         return Integer.parseInt(extractClaim(token, Claims::getSubject, Claims::getSubject));
     }
 
-    private <T> T extractClaim(String token, Function<Claims, T> claimsResolver, Function<Claims, T> fallbackResolver){
+    private <T> T extractClaim(String token, Function<Claims, T> claimsResolver, Function<Claims, T> fallbackResolver){  //Извлечение утверждения и обработка случая, когда утверждения нет
         final Claims claims = extractAllClaims(token);
         T extractedClaim = claimsResolver.apply(claims);
         return (extractedClaim != null) ? extractedClaim : fallbackResolver.apply(claims);
     }
 
 
-    public String generateToken(UserDetails userDetails){
+    public String generateToken(UserDetails userDetails){  //Генерация токена, используя данные пользователя
         return generateToken(new HashMap<>(), userDetails);
     }
 
-    private String generateToken(Map<String, Object> extraClaims, UserDetails userDetails){
+    private String generateToken(Map<String, Object> extraClaims, UserDetails userDetails){  //Создает jwt
         return Jwts.builder()
                 .setClaims(extraClaims)
                 .setSubject(String.valueOf(userDetails.getUsername()))
@@ -43,20 +43,20 @@ public class JwtService {
                 .compact();
     }
 
-    public boolean isTokenValid(String token, UserDetails userDetails){
+    public boolean isTokenValid(String token, UserDetails userDetails){  //Проверка срока и валидности токена
         final int username = extractUsername(token);
         return (String.valueOf(username).equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
 
-    private boolean isTokenExpired(String token) {
+    private boolean isTokenExpired(String token) {  //Проверка, не истек ли токен
         return extractExpiration(token).before(new Date());
     }
 
-    private Date extractExpiration(String token) {
+    private Date extractExpiration(String token) {  //Извлекает срок действия токена
         return extractClaim(token, Claims::getExpiration, Claims::getExpiration);
     }
 
-    private Claims extractAllClaims(String token) {
+    private Claims extractAllClaims(String token) {  //Верификация подписи и извлечение утверждений(например, срок действия jwt, роль, номер студака)
         return Jwts.parserBuilder()
                 .setSigningKey(getSignInKey())
                 .build()
@@ -64,7 +64,7 @@ public class JwtService {
                 .getBody();
     }
 
-    private Key getSignInKey() {
+    private Key getSignInKey() {  //Передача ключа методом hmac
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }

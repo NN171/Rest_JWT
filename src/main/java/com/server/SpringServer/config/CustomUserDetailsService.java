@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-@Service
+@Service  //Класс реализует бизнес-логику
 public class CustomUserDetailsService implements UserDetailsService {
     private StudentServiceRequest studentService;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {   //Переопределение метода для использования юзернейма типа int
         try {
             int studentId = Integer.parseInt(username);
             Student student = studentService.findByStudentId(studentId);

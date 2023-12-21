@@ -13,16 +13,16 @@ import java.util.Collection;
 import java.util.List;
 
 @Data
-@Entity
+@Entity  //Обозначение класса, как сущность
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table (name = "users")
+@Table (name = "users")  //Обращение к таблице users
 public class Student implements UserDetails {
-    @Id
-    @GeneratedValue
+    @Id  //Указание переменной, в качестве id  в таблице
+    @GeneratedValue  //Равносильно primary key в таблице
     private Long id;
-    @Column(unique = true)
+    @Column(unique = true)  //Столбец, который хранит уникальные значения
     private int studentId;
     private String email;
     private String password;

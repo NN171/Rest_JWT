@@ -15,14 +15,14 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-@Component
+@Component  //класс является частью компонентов приложения
 @RequiredArgsConstructor
-public class JwtAuthFilter extends OncePerRequestFilter {
+public class JwtAuthFilter extends OncePerRequestFilter {  //Расширение дает гарантию, что будет произведен только один фильтр для одного запроса
 
     private final JwtService jwtService;
     private final CustomUserDetailsService userDetailsService;
     @Override
-    protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain)
+    protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain)  //В методе происходит проверка и обработка токена
             throws ServletException, IOException {
         final String authHeader = request.getHeader("Authorization");
         final String jwt;

@@ -12,7 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity  //Подключение проверки безопасности
 @RequiredArgsConstructor
 public class SecurityConfig {
 
@@ -20,18 +20,18 @@ public class SecurityConfig {
     private final AuthenticationProvider authenticationProvider;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {  //Конфигурация основных настроек безопасности
         http
                 .csrf(AbstractHttpConfigurer::disable
                 )
-                .authorizeHttpRequests(auth -> auth
+                .authorizeHttpRequests(auth -> auth  //Настройка правил авторизации Http реквестов
                 .requestMatchers("/api/v1/student/**").permitAll()
                 .anyRequest().authenticated()
                 )
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);  //Обарботка jwt перед фильтрацией
         return http.build();
     }
 }

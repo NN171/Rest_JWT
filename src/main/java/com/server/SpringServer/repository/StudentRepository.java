@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Repository
-public interface StudentRepository extends JpaRepository<Student, Long> {
+@Repository  // Интерфейс предоставляет механизм управления бд
+public interface StudentRepository extends JpaRepository<Student, Long> {  //Интерфейс позволяет использовать основные методы для работы с сущностью
 
     Optional<Student> findByStudentId(int studentId);
     void deleteByStudentId(int studentId);

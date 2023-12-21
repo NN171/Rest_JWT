@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public interface StudentService {
+public interface StudentService {  //Сервис - интерфейс для работы с данными студента
     List<Student> getStudents();
     void deleteStudent(int studentId);
     Student updateStudent(Student student);
